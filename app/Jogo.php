@@ -11,10 +11,10 @@ class Jogo extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     function jogadas() {
-        return $this->hasMany('App\Jogada');
+        return $this->hasMany('App\Jogada')->orderBy('nome');
     }
 
     function sorteios() {
-        return $this->hasMany('App\Sorteio');
+        return $this->hasMany('App\Sorteio')->orderBy('data', 'asc');
     }
 }
