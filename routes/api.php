@@ -19,6 +19,8 @@ Route::get('jogos/{tipo}', 'MegaCabanaController@getJogos');
 Route::post('criarJogo', 'MegaCabanaController@criarJogo');
 Route::post('addJogador', 'MegaCabanaController@addJogador');
 Route::post('attJogada', 'MegaCabanaController@attJogada');
+Route::post('attSorteio', 'MegaCabanaController@attSorteio');
 Route::post('addSorteio', 'MegaCabanaController@addSorteio');
 Route::delete('deletaJogo/{id}', 'MegaCabanaController@deletaJogo');
 Route::delete('deletaJogada/{id}', 'MegaCabanaController@deletaJogada');
+Route::delete('deletaSorteio/{id}', 'MegaCabanaController@deletaSorteio');

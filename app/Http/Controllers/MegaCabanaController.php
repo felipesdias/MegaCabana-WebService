@@ -161,6 +161,41 @@ class MegaCabanaController extends Controller
         return response()->success($novo);
     }
 
+    public function attSorteio(Request $request) {
+        $dados = $request->all();
+
+        $anterior = 0;
+        foreach($dados as $key => $valor) {
+            if($key[0] == "_") {
+                if(!$valor || $valor == '')
+                    return response()->error('Todos os números são obrigatórios', 422);
+
+                if($valor < 1 || $valor > 60)
+                    return response()->error('Todos os números devem ser entre 1 a 60', 422);
+
+                if($valor <= $anterior)
+                    return response()->error('Números não estão em sequencia', 422);
+
+                $anterior = $valor;
+            }
+        }
+
+        $novo = Sorteio::find($request->id);
+
+        foreach($dados as $key => $valor) {
+            $novo[$key] = $valor;
+        }
+        
+        $novo->save();
+
+        return response()->success($novo);
+    }
+
+    public function deletaSorteio(Request $request, $id) {
+        Sorteio::where('id', $id)->delete();
+        return response()->success(true);
+    }
+
     public function deletaJogo(Request $request, $id) {
         Jogo::where('id', $id)->delete();
         return response()->success(true);
